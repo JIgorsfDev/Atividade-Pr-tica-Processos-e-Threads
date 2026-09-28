@@ -9,13 +9,7 @@ class RacerRunnable implements Runnable {
     @Override
     public void run() {
         while (true) {
-            System.out.println("Corredor " + i + " - imprimindo");
-
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException error) {
-                System.out.println("Thread interrompida.");
-            }
+            System.out.println("Racer " + i + " - imprimindo");
         }
     }
 }
@@ -31,20 +25,14 @@ class RacerExt extends Thread {
     @Override
     public void run() {
         while (true) {
-            System.out.println("Corredor " + i + " - imprimindo");
-
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException error) {
-                System.out.println("Thread interrompida.");
-            }
+            System.out.println("Racer " + i + " - imprimindo");
         }
     }
 }
 
-public class Main {
+class Race {
 
-    public static void main(String[] args) {
+    public void iniciarCorrida() {
 
         RacerRunnable r1 = new RacerRunnable(1);
         Thread thread1 = new Thread(r1);
@@ -56,3 +44,11 @@ public class Main {
     }
 }
 
+public class Main {
+
+    public static void main(String[] args) {
+
+        Race race = new Race();
+        race.iniciarCorrida();
+    }
+}
