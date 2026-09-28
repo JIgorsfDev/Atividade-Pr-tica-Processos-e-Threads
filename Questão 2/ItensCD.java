@@ -8,7 +8,7 @@ class Deposito{
     }
     
     public void retirar(){
-        if(itens > 0){
+        if(itens > 0){ //controle do vazio.
             itens--;
             System.out.println("Itens no deposito: " + itens);
         }else{
