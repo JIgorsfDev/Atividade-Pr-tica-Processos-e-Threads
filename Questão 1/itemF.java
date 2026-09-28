@@ -44,13 +44,27 @@ class Race {
 
     public void iniciarCorrida() {
 
-        for (int i = 1; i <= 10; i++) {
+        Thread[] im = new Thread[5];
+        Thread[] par = new Thread[5];
+
+        for (int i = 1; i <= 9; i += 2) {
             RacerRunnable racer = new RacerRunnable(i);
-            Thread thread = new Thread(racer);
+            im[i / 2] = new Thread(racer);
+            im[i / 2].start();
+        }
 
-            thread.setPriority(i);
+        for (Thread thread : im) {
+            try {
+                thread.join();
+            } catch (InterruptedException error) {
+                System.out.println("Corrida interrompida.");
+            }
+        }
 
-            thread.start();
+        for (int i = 2; i <= 10; i += 2) {
+            RacerRunnable racer = new RacerRunnable(i);
+            par[i / 2 - 1] = new Thread(racer);
+            par[i / 2 - 1].start();
         }
     }
 }
